@@ -7,9 +7,7 @@ include FileUtils::Verbose
 require ENV['TM_SUPPORT_PATH'] + "/lib/exit_codes"
 require ENV['TM_SUPPORT_PATH'] + "/lib/escape"
 
-require ENV["TM_SUPPORT_PATH"] + "/lib/tm/require_cmd"
-
-Debug = false
+Debug = true
 
 machine = `sysctl hw.machine | awk -F" " '{print $2}'`
 is64Bit = `sysctl hw.optional.x86_64 | awk -F" " '{print $2}'`
@@ -37,9 +35,6 @@ else
 end
 
 puts "using #{compiler} and #{linker}" if Debug
-
-TextMate.require_cmd compiler
-TextMate.require_cmd linker
 
 if ARGV.count < 1
   print 'No input file specified'

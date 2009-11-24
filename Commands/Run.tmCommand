@@ -13,20 +13,20 @@ require ENV["TM_SUPPORT_PATH"] + "/lib/tm/save_current_document"
 TextMate.save_current_document('go')
 TextMate::Executor.make_project_master_current_document
 
-filepath = ENV['TM_FILEPATH']
+#filepath = ENV['TM_FILEPATH']
 
 # run the compiler
-errors = `#{ENV['TM_BUNDLE_SUPPORT'] + '/go_run.rb'} #{filepath}`
+#errors = `} #{filepath}`
 
-args = []
-if errors.nil? or errors.empty?
-  args = [filepath.chomp(File.extname(filepath))]
-else
-  args = ['/usr/bin/env', 'echo', "#{errors}"]
-end
+#args = []
+#if errors.nil? or errors.empty?
+#  args = [filepath.chomp(File.extname(filepath))]
+#else
+#  args = ['/usr/bin/env', 'echo', "#{errors}"]
+#end
 
-print args.join(' ')
-TextMate::Executor.run(args)</string>
+
+TextMate::Executor.run(ENV['TM_BUNDLE_SUPPORT'] + '/go_run.rb', ENV["TM_FILEPATH"])</string>
 	<key>input</key>
 	<string>document</string>
 	<key>keyEquivalent</key>
